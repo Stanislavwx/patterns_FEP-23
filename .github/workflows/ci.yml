@@ -1,0 +1,17 @@
+name: Check Submission
+
+on:
+  pull_request:
+    branches: [ submissions ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check paths
+        run: |
+          CHANGED=$(git diff --name-only origin/submissions...HEAD)
+          echo "$CHANGED" | awk '
+            { if ($0 !~ /^students\/[0-9]+_[a-zA-Z]+\/lab[0-9]+\/.*/) bad=1 }
+            END { if (bad) { print "❌ Error: зміни поза дозволеною папкою"; exit 1 } }'

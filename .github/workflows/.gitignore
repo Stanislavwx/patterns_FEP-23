@@ -1,0 +1,19 @@
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Java
+*.class
+target/
+
+# C++
+*.o
+*.exe
+
+# Системні
+.DS_Store
+Thumbs.db
